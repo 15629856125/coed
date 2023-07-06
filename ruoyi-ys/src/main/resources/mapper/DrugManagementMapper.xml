@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.mapper.DrugManagementMapper">
+
+    <resultMap type="com.ruoyi.Entity.DrugManagementEntity" id="DrugManagementEntityResult">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="drugName" column="drug_name" jdbcType="VARCHAR"/>
+        <result property="drugCompany" column="drug_company" jdbcType="VARCHAR"/>
+        <result property="drugSpecs" column="drug_specs" jdbcType="VARCHAR"/>
+        <result property="drugGgdw" column="drug_ggdw" jdbcType="VARCHAR"/>
+        <result property="isLimit" column="is_limit" jdbcType="VARCHAR"/>
+        <result property="drugStock" column="drug_stock" jdbcType="INTEGER"/>
+        <result property="drugEffect" column="drug_effect" jdbcType="VARCHAR"/>
+        <result property="manufacturer" column="manufacturer" jdbcType="VARCHAR"/>
+        <result property="drugStatus" column="drug_status" jdbcType="VARCHAR"/>
+        <result property="drugPrice" column="drug_price" jdbcType="DECIMAL"/>
+        <result property="drugCreatetime" column="drug_createtime" jdbcType="TIMESTAMP"/>
+        <result property="drugEndtime" column="drug_endtime" jdbcType="TIMESTAMP"/>
+        <result property="f1" column="f1" jdbcType="VARCHAR"/>
+        <result property="f2" column="f2" jdbcType="VARCHAR"/>
+        <result property="f3" column="f3" jdbcType="VARCHAR"/>
+        <result property="f4" column="f4" jdbcType="VARCHAR"/>
+        <result property="f5" column="f5" jdbcType="VARCHAR"/>
+        <result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
+        <result property="createuser" column="createuser" jdbcType="VARCHAR"/>
+        <result property="delFlag" column="del_flag" jdbcType="SMALLINT"/>
+        <result property="lastchangeuser" column="lastchangeuser" jdbcType="VARCHAR"/>
+        <result property="lastchangetime" column="lastchangetime" jdbcType="TIMESTAMP"/>
+        <result property="memo" column="memo" jdbcType="VARCHAR"/>
+        <result property="datastatus" column="datastatus" jdbcType="SMALLINT"/>
+    </resultMap>
+
+    <sql id="selectDrugManagementEntityVo">
+        select id, drug_name, drug_company, drug_specs, drug_price,drug_ggdw, is_limit, drug_stock, drug_effect, manufacturer, drug_status, drug_createtime, drug_endtime, f1, f2, f3, f4, f5, createtime, createuser, del_flag, lastchangeuser, lastchangetime, memo, datastatus from drug_management
+    </sql>
+
+    <select id="selectDrugManagementEntityList" parameterType="com.ruoyi.Entity.DrugManagementEntity" resultMap="DrugManagementEntityResult">
+        <include refid="selectDrugManagementEntityVo"/>
+        <where>  
+            <if test="drugName != null  and drugName != ''"> and drug_name like concat('%', #{drugName}, '%')</if>
+            <if test="drugCompany != null  and drugCompany != ''"> and drug_company = #{drugCompany}</if>
+            <if test="drugSpecs != null  and drugSpecs != ''"> and drug_specs = #{drugSpecs}</if>
+            <if test="drugGgdw != null  and drugGgdw != ''"> and drug_ggdw = #{drugGgdw}</if>
+            <if test="isLimit != null  and isLimit != ''"> and is_limit = #{isLimit}</if>
+            <if test="drugStock != null "> and drug_stock = #{drugStock}</if>
+            <if test="drugEffect != null  and drugEffect != ''"> and drug_effect = #{drugEffect}</if>
+            <if test="manufacturer != null  and manufacturer != ''"> and manufacturer = #{manufacturer}</if>
+            <if test="drugStatus != null  and drugStatus != ''"> and drug_status = #{drugStatus}</if>
+            <if test="drugPrice != null  and drugPrice != ''"> and drug_price = #{drugPrice}</if>
+            <if test="drugCreatetime != null "> and drug_createtime = #{drugCreatetime}</if>
+            <if test="drugEndtime != null "> and drug_endtime = #{drugEndtime}</if>
+            <if test="f1 != null  and f1 != ''"> and f1 = #{f1}</if>
+            <if test="f2 != null  and f2 != ''"> and f2 = #{f2}</if>
+            <if test="f3 != null  and f3 != ''"> and f3 = #{f3}</if>
+            <if test="f4 != null  and f4 != ''"> and f4 = #{f4}</if>
+            <if test="f5 != null  and f5 != ''"> and f5 = #{f5}</if>
+            <if test="createtime != null "> and createtime = #{createtime}</if>
+            <if test="createuser != null  and createuser != ''"> and createuser = #{createuser}</if>
+            <if test="lastchangeuser != null  and lastchangeuser != ''"> and lastchangeuser = #{lastchangeuser}</if>
+            <if test="lastchangetime != null "> and lastchangetime = #{lastchangetime}</if>
+            <if test="memo != null  and memo != ''"> and memo = #{memo}</if>
+            <if test="datastatus != null "> and datastatus = #{datastatus}</if>
+        </where>
+    </select>
+    
+    <select id="selectDrugManagementEntityById" parameterType="String" resultMap="DrugManagementEntityResult">
+        <include refid="selectDrugManagementEntityVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertDrugManagementEntity" parameterType="com.ruoyi.Entity.DrugManagementEntity" useGeneratedKeys="true" keyProperty="id">
+        insert into drug_management
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="drugName != null">drug_name,</if>
+            <if test="drugCompany != null">drug_company,</if>
+            <if test="drugSpecs != null">drug_specs,</if>
+            <if test="drugGgdw != null">drug_ggdw,</if>
+            <if test="isLimit != null">is_limit,</if>
+            <if test="drugStock != null">drug_stock,</if>
+            <if test="drugEffect != null">drug_effect,</if>
+            <if test="manufacturer != null">manufacturer,</if>
+            <if test="drugStatus != null">drug_status,</if>
+            <if test="drugPrice != null">drug_price,</if>
+            <if test="drugCreatetime != null">drug_createtime,</if>
+            <if test="drugEndtime != null">drug_endtime,</if>
+            <if test="f1 != null">f1,</if>
+            <if test="f2 != null">f2,</if>
+            <if test="f3 != null">f3,</if>
+            <if test="f4 != null">f4,</if>
+            <if test="f5 != null">f5,</if>
+            <if test="createtime != null">createtime,</if>
+            <if test="createuser != null">createuser,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="lastchangeuser != null">lastchangeuser,</if>
+            <if test="lastchangetime != null">lastchangetime,</if>
+            <if test="memo != null">memo,</if>
+            <if test="datastatus != null">datastatus,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="drugName != null">#{drugName},</if>
+            <if test="drugCompany != null">#{drugCompany},</if>
+            <if test="drugSpecs != null">#{drugSpecs},</if>
+            <if test="drugGgdw != null">#{drugGgdw},</if>
+            <if test="isLimit != null">#{isLimit},</if>
+            <if test="drugStock != null">#{drugStock},</if>
+            <if test="drugEffect != null">#{drugEffect},</if>
+            <if test="manufacturer != null">#{manufacturer},</if>
+            <if test="drugStatus != null">#{drugStatus},</if>
+            <if test="drugPrice != null">#{drugPrice},</if>
+            <if test="drugCreatetime != null">#{drugCreatetime},</if>
+            <if test="drugEndtime != null">#{drugEndtime},</if>
+            <if test="f1 != null">#{f1},</if>
+            <if test="f2 != null">#{f2},</if>
+            <if test="f3 != null">#{f3},</if>
+            <if test="f4 != null">#{f4},</if>
+            <if test="f5 != null">#{f5},</if>
+            <if test="createtime != null">#{createtime},</if>
+            <if test="createuser != null">#{createuser},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="lastchangeuser != null">#{lastchangeuser},</if>
+            <if test="lastchangetime != null">#{lastchangetime},</if>
+            <if test="memo != null">#{memo},</if>
+            <if test="datastatus != null">#{datastatus},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDrugManagementEntity" parameterType="com.ruoyi.Entity.DrugManagementEntity">
+        update drug_management
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="drugName != null">drug_name = #{drugName},</if>
+            <if test="drugCompany != null">drug_company = #{drugCompany},</if>
+            <if test="drugSpecs != null">drug_specs = #{drugSpecs},</if>
+            <if test="drugGgdw != null">drug_ggdw = #{drugGgdw},</if>
+            <if test="isLimit != null">is_limit = #{isLimit},</if>
+            <if test="drugStock != null">drug_stock = #{drugStock},</if>
+            <if test="drugEffect != null">drug_effect = #{drugEffect},</if>
+            <if test="manufacturer != null">manufacturer = #{manufacturer},</if>
+            <if test="drugStatus != null">drug_status = #{drugStatus},</if>
+            <if test="drugPrice != null">drug_price = #{drugPrice},</if>
+            <if test="drugCreatetime != null">drug_createtime = #{drugCreatetime},</if>
+            <if test="drugEndtime != null">drug_endtime = #{drugEndtime},</if>
+            <if test="f1 != null">f1 = #{f1},</if>
+            <if test="f2 != null">f2 = #{f2},</if>
+            <if test="f3 != null">f3 = #{f3},</if>
+            <if test="f4 != null">f4 = #{f4},</if>
+            <if test="f5 != null">f5 = #{f5},</if>
+            <if test="createtime != null">createtime = #{createtime},</if>
+            <if test="createuser != null">createuser = #{createuser},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="lastchangeuser != null">lastchangeuser = #{lastchangeuser},</if>
+            <if test="lastchangetime != null">lastchangetime = #{lastchangetime},</if>
+            <if test="memo != null">memo = #{memo},</if>
+            <if test="datastatus != null">datastatus = #{datastatus},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDrugManagementEntityById" parameterType="String">
+        delete from drug_management where id = #{id}
+    </delete>
+
+    <delete id="deleteDrugManagementEntityByIds" parameterType="String">
+        delete from drug_management where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.mapper.LabelTableMapper">
+
+    <resultMap id="BaseResultMap" type="com.ruoyi.Entity.LabelTableEntity">
+            <id property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="diseaseId" column="disease_id" jdbcType="VARCHAR"/>
+            <result property="drugId" column="drug_id" jdbcType="VARCHAR"/>
+            <result property="drugName" column="drug_name" jdbcType="VARCHAR"/>
+            <result property="drugSpecs" column="drug_specs" jdbcType="VARCHAR"/>
+            <result property="drugNumber" column="drug_number" jdbcType="INTEGER"/>
+            <result property="drugConsumption" column="drug_consumption" jdbcType="VARCHAR"/>
+            <result property="f1" column="f1" jdbcType="VARCHAR"/>
+            <result property="f2" column="f2" jdbcType="VARCHAR"/>
+            <result property="f3" column="f3" jdbcType="VARCHAR"/>
+            <result property="f4" column="f4" jdbcType="VARCHAR"/>
+            <result property="f5" column="f5" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,disease_id,drug_id,
+        drug_name,drug_specs,drug_number,
+        drug_consumption,f1,f2,
+        f3,f4,f5
+    </sql>
+</mapper>

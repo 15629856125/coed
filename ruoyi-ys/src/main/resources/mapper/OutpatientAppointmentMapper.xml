@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.mapper.OutpatientAppointmentMapper">
+
+    <resultMap id="BaseResultMap" type="com.ruoyi.Entity.OutpatientAppointmentEntity">
+            <id property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="visitName" column="visit_name" jdbcType="VARCHAR"/>
+            <result property="visitSex" column="visit_sex" jdbcType="VARCHAR"/>
+            <result property="visitId" column="visit_id" jdbcType="INTEGER"/>
+            <result property="deptId" column="dept_id" jdbcType="INTEGER"/>
+            <result property="deptName" column="dept_name" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+            <result property="f1" column="f1" jdbcType="VARCHAR"/>
+            <result property="f2" column="f2" jdbcType="VARCHAR"/>
+            <result property="f3" column="f3" jdbcType="VARCHAR"/>
+            <result property="f4" column="f4" jdbcType="VARCHAR"/>
+            <result property="f5" column="f5" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        select id,user_id,user_name,visit_name,
+        visit_sex,visit_id,dept_id,
+        dept_name,status,
+        f1,f2,f3,
+        f4,f5,
+        create_time from outpatient_appointment
+    </sql>
+    <select id="selectEntityList" parameterType="com.ruoyi.Entity.OutpatientAppointmentEntity" resultMap="BaseResultMap">
+        <include refid="Base_Column_List"/>
+        <where>
+            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
+            <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
+            <if test="visitName != null  and visitName != ''"> and visit_name = #{visitName}</if>
+            <if test="visitSex != null  and visitSex != ''"> and visit_sex = #{visitSex}</if>
+            <if test="visitId != null  and visitId != ''"> and visit_id = #{visitId}</if>
+            <if test="deptId != null "> and dept_id = #{deptId}</if>
+            <if test="deptName != null  and deptName != ''"> and dept_name = #{deptName}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="createTime != null  and createTime != ''"> and create_time = #{createTime}</if>
+            <if test="f1 != null  and f1 != ''"> and f1 = #{f1}</if>
+            <if test="f3 != null  and f3 != ''"> and f3 = #{f3}</if>
+            <if test="f4 != null  and f4 != ''"> and f4 = #{f4}</if>
+            <if test="f5 != null  and f5 != ''"> and f5 = #{f5}</if>
+        </where>
+        ORDER BY status, create_time ${f2}
+    </select>
+</mapper>

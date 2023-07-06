@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.mapper.VisitTableMapper">
+
+    <resultMap id="BaseResultMap" type="com.ruoyi.Entity.VisitTableEntity">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="visitName" column="visit_name" jdbcType="VARCHAR"/>
+            <result property="visitSex" column="visit_sex" jdbcType="VARCHAR"/>
+            <result property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="visitMemo" column="visit_memo" jdbcType="VARCHAR"/>
+            <result property="phonenumber" column="phonenumber" jdbcType="VARCHAR"/>
+            <result property="visitIdcard" column="visit_idcard" jdbcType="VARCHAR"/>
+            <result property="visitAge" column="visit_age" jdbcType="VARCHAR"/>
+            <result property="f1" column="f1" jdbcType="VARCHAR"/>
+            <result property="f2" column="f2" jdbcType="VARCHAR"/>
+            <result property="f3" column="f3" jdbcType="VARCHAR"/>
+            <result property="f4" column="f4" jdbcType="VARCHAR"/>
+            <result property="f5" column="f5" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+       select id,visit_name,visit_sex,
+        user_id,visit_memo,phonenumber,
+        visit_idcard,visit_age,f1,
+        f2,f3,f4,
+        f5 from visit_table
+    </sql>
+
+        <select id="selectVisitTableList" parameterType="com.ruoyi.Entity.VisitTableEntity" resultMap="BaseResultMap">
+            <include refid="Base_Column_List"/>
+            <where>
+                <if test="visitName != null  and visitName != ''"> and visit_name = #{visitName}</if>
+                <if test="visitSex != null  and visitSex != ''"> and visit_sex = #{visitSex}</if>
+                <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
+                <if test="visitSex != null  and visitSex != ''"> and visit_sex = #{visitSex}</if>
+                <if test="visitMemo != null  and visitMemo != ''"> and visit_memo = #{visitMemo}</if>
+                <if test="phonenumber != null and phonenumber != '' "> and phonenumber = #{phonenumber}</if>
+                <if test="visitIdcard != null  and visitIdcard != ''"> and visit_idcard = #{visitIdcard}</if>
+                <if test="visitAge != null  and visitAge != ''"> and visit_age = #{visitAge}</if>
+                <if test="f1 != null  and f1 != ''"> and f1 = #{f1}</if>
+                <if test="f2 != null  and f2 != ''"> and f2 = #{f2}</if>
+                <if test="f3 != null  and f3 != ''"> and f3 = #{f3}</if>
+                <if test="f4 != null  and f4 != ''"> and f4 = #{f4}</if>
+                <if test="f5 != null  and f5 != ''"> and f5 = #{f5}</if>
+            </where>
+        </select>
+</mapper>
